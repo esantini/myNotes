@@ -13,7 +13,6 @@ const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
 
 axios('api/notes')
-  .then(res => res.json())
   .then(response => {
     store.dispatch({ type: actionTypes.GET_NOTES, notes: response });
   });
