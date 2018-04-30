@@ -9,7 +9,7 @@ export function getNotes() {
 		axios.get('api/notes')
 			.then(response => {
 				// If request is good...
-				dispatch({ type: actionTypes.GET_NOTES, note: response.data });
+				dispatch({ type: actionTypes.GET_NOTES, notes: response.data });
 			})
 			.catch(err => {
 				// If request is bad... 
@@ -42,7 +42,7 @@ export function updateNote({ id, title, note }) {
 
 	return function (dispatch) {
 
-		console.log("action: post api/createnote:", id, title, note);
+		console.log("action: post api/updatenote:", id, title, note);
 
 		axios.post('api/updatenote', { id, title, note })
 			.then(response => {

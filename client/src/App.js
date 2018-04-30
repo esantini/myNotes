@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Notes from './components/notes';
+import CreateNote from './components/createNote';
 import UpdateNote from './components/updateNote';
 
 export default class App extends Component {
@@ -13,7 +14,7 @@ export default class App extends Component {
 
 					<Route exact path="/" component={Notes}></Route>
 
-					<Route path="/createnote" component={UpdateNote} ></Route>
+					<Route path="/createnote" component={CreateNote} ></Route>
 					<Route path="/updatenote/:id" component={UpdateNote} ></Route>
 					{/* <Route path="signup" component={Signup} ></Route>
 					<Route path="feature" component={RequireAuth(Feature)} ></Route> */}

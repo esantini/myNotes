@@ -6,8 +6,8 @@ import * as actions from '../actions';
 
 class UpdateNote extends Component {
 
-	handleFormSubmit({ id, title, note }) {
-		this.props.updateNote({ id, title, note });
+	handleFormSubmit({ title, note }) {
+			this.props.createNote({ title, note });
 	}
 
 	renderAlert() {
@@ -21,10 +21,7 @@ class UpdateNote extends Component {
 	}
 
 	render() {
-		const { handleSubmit } = this.props;
-
-		const noteFound = this.props.notes.find((note) => note.id === this.props.match.params.id);
-		const { title, note } = noteFound ? noteFound : {};
+		const { handleSubmit, title, note } = this.props;
 
 		return (
 			<Fragment>
@@ -32,7 +29,7 @@ class UpdateNote extends Component {
 				<Link to="/">Home</Link>
 
 				<h2>
-					Update Note
+					Create Note
 				</h2>
 
 				<form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
@@ -53,13 +50,12 @@ class UpdateNote extends Component {
 }
 
 const reduxUpdateForm = reduxForm({
-	form: 'updateNote',
-	fields: ['id', 'title', 'note']
+	form: 'createNote',
+	fields: ['title', 'note']
 })(UpdateNote);
 
 function mapStateToProps(state) {
-	console.log("mapStateToProps", state.notes);
-	return { errorMessage: state.error, notes: state.notes.notes };
+	return { errorMessage: state.error };
 }
 
 export default connect(mapStateToProps, actions)(reduxUpdateForm);
