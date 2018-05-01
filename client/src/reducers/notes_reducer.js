@@ -4,10 +4,9 @@ export default function (state = { notes: [] }, action) {
 
 	switch (action.type) {
 		case actionTypes.CREATE_NOTE:
-			console.log(action.notes);
 			return {
 				...state,
-				notes: [...state.notes, action.notes],
+				notes: [...state.notes, action.note],
 				error: null
 			};
 		case actionTypes.GET_NOTES:
