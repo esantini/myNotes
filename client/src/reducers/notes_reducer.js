@@ -10,9 +10,6 @@ export default function (state = { notes: [] }, action) {
 				error: null
 			};
 		case actionTypes.GET_NOTES:
-
-			console.log("reducer get-notes", action);
-
 			return { ...state, notes: action.notes.data, error: null };
 		default:
 			return state;

@@ -58,7 +58,6 @@ const reduxUpdateForm = reduxForm({
 })(UpdateNote);
 
 function mapStateToProps(state) {
-	console.log("mapStateToProps", state.notes);
 	return { errorMessage: state.error, notes: state.notes.notes };
 }
 
