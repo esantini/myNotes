@@ -6,9 +6,6 @@ const adapter = new FileSync('db.json');
 module.exports = class NotesHandler {
 
   constructor() {
-    this.init();
-  }
-  init() {
     this.db = low(adapter);
     this.db.defaults({ notes: [], count: 0 })
       .write();
@@ -28,11 +25,10 @@ module.exports = class NotesHandler {
     return this.db.get('notes').value();
   }
   update(note) {
-    this.db.get('notes')
-      .find({ id: note.id } )
-      .assign(note)
-      .write();
-    return note;
+    return this.db.get('notes')
+    .find({ id: note.id } )
+    .assign(note)
+    .write();
   }
   remove(note) {
 

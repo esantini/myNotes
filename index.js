@@ -36,14 +36,14 @@ app.post('/api/createnote', (req, res) => {
 
 app.post('/api/updatenote', (req, res) => {
     console.log('/api/updatenote', req.body);
-    const note = {
+    let note = {
         id: req.body.id,
         title: req.body.title,
         note: req.body.note,
         updated: Date.now()
     }
-    notesDB.update(note);
-    res.json({ res: "UPDATED", note });
+    note = notesDB.update(note); // TODO .then(() => 
+    return res.json({ res: "UPDATED", note });
 });
 
 app.post('/api/deletenote', (req, res) => {
