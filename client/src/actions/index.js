@@ -20,6 +20,21 @@ export function getNotes() {
 	}
 }
 
+export function getSelectedNote(id) {
+	return function (dispatch) {
+		axios.get('api/note', { params: { id } })
+			.then(response => {
+				// If request is good...
+				dispatch(selectedNote(response.data));
+			})
+			.catch(err => {
+				// If request is bad... 
+				// - Show an error to the user
+				dispatch({ type: actionTypes.GET_NOTES_ERROR })
+			});
+	}
+}
+
 export function createNote({ title, note }) {
 
 	return function (dispatch) {
@@ -61,5 +76,5 @@ export function updateNote({ id, title, note, history }) {
 				dispatch({ type: actionTypes.UPDATE_NOTE_ERROR })
 			});
 
-		}
+	}
 }

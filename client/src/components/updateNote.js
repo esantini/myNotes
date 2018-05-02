@@ -6,6 +6,14 @@ import * as actions from '../actions';
 
 class UpdateNote extends Component {
 
+	constructor(props) {
+		super(props);
+
+		if(!props.note) {
+			props.getSelectedNote(props.match.params.id);
+		}
+	}
+
 	handleFormSubmit({ id, title, note }) {
 		this.props.updateNote({
 			id: this.props.note.id,

@@ -7,6 +7,14 @@ import Note from './note';
 
 class DeleteNote extends Component {
 
+	constructor(props) {
+		super(props);
+
+		if(!props.note) {
+			props.getSelectedNote(props.match.params.id);
+		}
+	}
+
 	renderAlert() {
 		if (this.props.errorMessage) {
 			return (

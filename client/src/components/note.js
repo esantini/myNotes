@@ -5,8 +5,6 @@ export default ({ note, onUpdateClick, onDeleteClick, hideControls }) => {
   const { title, created, updated } = note;
   note = note.note;
 
-  console.log("hideControls", hideControls);
-
   return (
     <Fragment>
       <h3>Title: {title}</h3>

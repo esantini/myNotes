@@ -20,7 +20,10 @@ app.get('/api/hello', (req, res) => {
 app.get('/api/note', (req, res) => {
     console.log('/api/note', req.query);
     const note = notesDB.read(req.query.id);
-    console.log(note);
+
+    if(note instanceof Array)
+        return res.json({ res: "FAIL" })
+
     res.json(note);
 });
 
