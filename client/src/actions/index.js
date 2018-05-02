@@ -52,7 +52,7 @@ export function updateNote({ id, title, note }) {
 		axios.post('api/updatenote', { id, title, note })
 			.then(response => {
 				// If request is good...
-				dispatch({ type: actionTypes.UPDATE_NOTE })
+				dispatch({ type: actionTypes.UPDATE_NOTE, note: response.data.note });
 			})
 			.catch(err => {
 				// If request is bad... 
