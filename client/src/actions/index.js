@@ -49,8 +49,6 @@ export function updateNote({ id, title, note }) {
 
 	return function (dispatch) {
 
-		console.log("action: post api/updatenote:", id, title, note);
-
 		axios.post('api/updatenote', { id, title, note })
 			.then(response => {
 				// If request is good...

@@ -7,7 +7,11 @@ import * as actions from '../actions';
 class UpdateNote extends Component {
 
 	handleFormSubmit({ id, title, note }) {
-		this.props.updateNote({ id, title, note });
+		this.props.updateNote({
+			id: this.props.note.id,
+			title: this.props.note.title, 
+			note: this.props.note.note
+		});
 	}
 
 	renderAlert() {

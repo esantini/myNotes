@@ -23,6 +23,7 @@ app.get('/api/notes', (req, res) => {
 });
 
 app.post('/api/createnote', (req, res) => {
+    console.log('/api/createnote', req.body);
     const note = {
         title: req.body.title,
         note: req.body.note,
@@ -34,6 +35,7 @@ app.post('/api/createnote', (req, res) => {
 });
 
 app.post('/api/updatenote', (req, res) => {
+    console.log('/api/updatenote', req.body);
     const note = {
         id: req.body.id,
         title: req.body.title,
@@ -42,6 +44,18 @@ app.post('/api/updatenote', (req, res) => {
     }
     notesDB.update(note);
     res.json({ res: "UPDATED", note });
+});
+
+app.post('/api/deletenote', (req, res) => {
+    console.log('/api/deletenote', req.body.id);
+    notesDB.delete(req.body.id);
+    res.json({ res: "DELETED", note: { id: req.body.id } });
+});
+
+app.post('/api/getnote', (req, res) => {
+    console.log('/api/getnote', req.body.id);
+    const note = notesDB.read(req.body.id);
+    res.json({ res: "SUCCESS", note });
 });
 
 app.get('*', (req, res) => {
