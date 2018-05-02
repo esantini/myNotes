@@ -11,6 +11,8 @@ export default function (state = { notes: [] }, action) {
 			};
 		case actionTypes.GET_NOTES:
 			return { ...state, notes: action.notes.data, error: null };
+		case actionTypes.SELECTED_NOTE:
+			return { ...state, selectedNote: action.note };
 		default:
 			return state;
 	}

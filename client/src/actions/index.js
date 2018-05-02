@@ -38,6 +38,13 @@ export function createNote({ title, note }) {
 	}
 }
 
+export function selectedNote(note) {
+	return {
+		type: actionTypes.SELECTED_NOTE,
+		note
+	}
+}
+
 export function updateNote({ id, title, note }) {
 
 	return function (dispatch) {

@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { Field, reduxForm } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
@@ -20,11 +20,33 @@ class UpdateNote extends Component {
 		}
 	}
 
-	render() {
-		const { handleSubmit } = this.props;
+	handleChangeTitle(e) {
+		this.props.selectedNote({ ...this.props.note, title: e.target.value });
+	}
 
-		const noteFound = this.props.notes.find((note) => note.id === this.props.match.params.id);
-		const { title, note } = noteFound ? noteFound : {};
+	handleChangeNote(e) {
+		this.props.selectedNote({ ...this.props.note, note: e.target.value });
+	}
+
+	renderForm(note, handleSubmit) {
+		return (
+			<form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+				<fieldset className="form-group">
+					<label>Title:</label>
+					<input name="title" type="text" className="form-control" value={note.title} onChange={this.handleChangeTitle.bind(this)} />
+				</fieldset>
+				<fieldset className="form-group">
+					<label>Note:</label>
+					<input name="note" type="text" className="form-control" value={note.note} onChange={this.handleChangeNote.bind(this)} />
+				</fieldset>
+				{this.renderAlert()}
+				<button action="submit" className="btn btn-primary">Submit</button>
+			</form>
+		);
+	}
+
+	render() {
+		const { handleSubmit, note } = this.props;
 
 		return (
 			<Fragment>
@@ -35,18 +57,8 @@ class UpdateNote extends Component {
 					Update Note
 				</h2>
 
-				<form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-					<fieldset className="form-group">
-						<label>Title:</label>
-						<Field name="title" component="input" type="text" className="form-control" value={title} />
-					</fieldset>
-					<fieldset className="form-group">
-						<label>Note:</label>
-						<Field name="note" component="input" type="text" className="form-control" value={note} />
-					</fieldset>
-					{this.renderAlert()}
-					<button action="submit" className="btn btn-primary">Submit</button>
-				</form>
+				{note ? this.renderForm(note, handleSubmit) : (<h3>Loading form.</h3>)}
+
 			</Fragment>
 		);
 	}
@@ -58,7 +70,7 @@ const reduxUpdateForm = reduxForm({
 })(UpdateNote);
 
 function mapStateToProps(state) {
-	return { errorMessage: state.error, notes: state.notes.notes };
+	return { errorMessage: state.error, note: state.notes.selectedNote };
 }
 
 export default connect(mapStateToProps, actions)(reduxUpdateForm);
