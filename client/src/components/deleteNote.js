@@ -10,7 +10,7 @@ class DeleteNote extends Component {
 	constructor(props) {
 		super(props);
 
-		if(!props.note) {
+		if (!props.note) {
 			props.getSelectedNote(props.match.params.id);
 		}
 	}
@@ -25,18 +25,20 @@ class DeleteNote extends Component {
 		}
 	}
 
-	renderDeleteButton(note, handleSubmit) {
+	renderDeleteButton(note) {
 		return (
 			<Fragment>
 				<div>Are you sure you want to delete this note?</div>
 				<Note note={note} hideControls />
-				<button onClick={handleSubmit}>Yes</button>
+				<button onClick={() => {
+					this.props.deleteNote({ id: this.props.note.id, history: this.props.history })
+				}}>Yes</button>
 			</Fragment>
 		);
 	}
 
 	render() {
-		const { handleSubmit, note } = this.props;
+		const { note } = this.props;
 
 		return (
 			<Fragment>
@@ -47,7 +49,7 @@ class DeleteNote extends Component {
 					Delete Note
 				</h2>
 
-				{note ? this.renderDeleteButton(note, handleSubmit) : (<h3>Loading form.</h3>)}
+				{note ? this.renderDeleteButton(note) : (<h3>Loading form.</h3>)}
 
 			</Fragment>
 		);

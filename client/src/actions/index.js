@@ -78,3 +78,22 @@ export function updateNote({ id, title, note, history }) {
 
 	}
 }
+
+export function deleteNote({ id, history }) {
+
+	console.log('action deleteNote id:', id);
+	return function (dispatch) {
+		axios.post('api/deletenote', { id })
+			.then(response => {
+				// If request is good...
+				dispatch({ type: actionTypes.DELETE_NOTE });
+				history.push('/');
+			})
+			.catch(err => {
+				// If request is bad... 
+				// - Show an error to the user
+				dispatch({ type: actionTypes.DELETE_NOTE_ERROR })
+			});
+
+	}
+}

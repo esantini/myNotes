@@ -31,15 +31,14 @@ module.exports = class NotesHandler {
   }
   update(note) {
     return this.db.get('notes')
-    .find({ id: note.id } )
-    .assign(note)
-    .write();
+      .find({ id: note.id } )
+      .assign(note)
+      .write();
   }
-  remove(note) {
-
-  }
-  newUser(user) {
-
+  delete(id) {
+    this.db.get('notes')
+      .remove({ id })
+      .write();
   }
 
 }
