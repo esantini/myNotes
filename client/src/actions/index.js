@@ -86,7 +86,7 @@ export function deleteNote({ id, history }) {
 		axios.post('api/deletenote', { id })
 			.then(response => {
 				// If request is good...
-				dispatch({ type: actionTypes.DELETE_NOTE });
+				dispatch({ type: actionTypes.DELETE_NOTE, note: { id } });
 				history.push('/');
 			})
 			.catch(err => {

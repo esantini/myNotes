@@ -13,5 +13,5 @@ export function formatDate(date) {
   let minute = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
   let second = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
 
-  return `${day} ${monthNames[monthIndex]} ${year} ${year} ${hour}:${minute}:${second}`;
+  return `${day} ${monthNames[monthIndex]} ${year} ${hour}:${minute}:${second}`;
 }

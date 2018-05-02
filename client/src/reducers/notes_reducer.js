@@ -10,23 +10,26 @@ export default function (state = { notes: [] }, action) {
 				error: null
 			};
 		case actionTypes.GET_NOTES:
-			return { ...state, notes: action.notes.data, error: null };
+			return { ...state, notes: action.notes.data, error: null, loading: false };
 		case actionTypes.UPDATE_NOTE:
 
-			const newNotes = [];
-			for (const note of state.notes) {
-				// deep copy
-				if (note.id !== action.note.id) {
-					newNotes.push({ ...note });
+			const newNotes = state.notes.reduce((accumulator, currentValue) => {
+				if (currentValue.id === action.note.id) {
+					accumulator.push(action.note);
 				}
 				else {
-					newNotes.push(action.note);
+					accumulator.push(currentValue);
 				}
-			}
-
+				return accumulator;
+			}, []);
 			return { ...state, notes: newNotes };
 		case actionTypes.SELECTED_NOTE:
 			return { ...state, selectedNote: action.note };
+		case actionTypes.DELETE_NOTE:
+			return { ...state };
+		case actionTypes.LOADING: {
+			return { ...state, loading: true }
+		}
 		default:
 			return state;
 	}

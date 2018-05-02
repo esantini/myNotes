@@ -50,7 +50,7 @@ class Notes extends Component {
 }
 
 function mapStateToProps({ notes }) {
-  return { notes: notes.notes };
+  return { notes: notes.notes, loading: notes.loading };
 }
 
 export default connect(mapStateToProps, actions)(Notes);

@@ -1,5 +1,6 @@
 export const GET_NOTES = "GET_NOTES";
 export const GET_NOTES_ERROR = "GET_NOTES_ERROR";
+export const LOADING = "LOADING";
 
 export const CREATE_NOTE = "CREATE_NOTE";
 export const CREATE_NOTE_ERROR = "CREATE_NOTE_ERROR";

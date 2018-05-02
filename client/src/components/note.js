@@ -6,7 +6,7 @@ export default ({ note, onUpdateClick, onDeleteClick, hideControls }) => {
   note = note.note;
 
   return (
-    <Fragment>
+    <div className="note-wrapper">
       <h3>Title: {title}</h3>
       <p>{note}</p>
       <div>
@@ -21,7 +21,7 @@ export default ({ note, onUpdateClick, onDeleteClick, hideControls }) => {
         <button onClick={onDeleteClick}>Delete</button>
       </Fragment>)}
 
-    </Fragment>
+    </div>
   );
 }
 
