@@ -17,6 +17,13 @@ app.get('/api/hello', (req, res) => {
     res.send({ express: 'Hello from express' });
 });
 
+app.get('/api/note', (req, res) => {
+    console.log('/api/note', req.query);
+    const note = notesDB.read(req.query.id);
+    console.log(note);
+    res.json(note);
+});
+
 app.get('/api/notes', (req, res) => {
     const notes = notesDB.read();
     res.json(notes);

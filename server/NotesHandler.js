@@ -21,7 +21,12 @@ module.exports = class NotesHandler {
 
     return note;
   }
-  read(note) {
+  read(id) {
+    if(id || id === 0) {
+      return this.db.get('notes')
+        .find({ id: parseInt(id) })
+        .value();
+    }
     return this.db.get('notes').value();
   }
   update(note) {
@@ -38,12 +43,3 @@ module.exports = class NotesHandler {
   }
 
 }
-
-
-// // Set a user using Lodash shorthand syntax
-// db.set('user.name', 'typicode')
-//   .write();
-
-// // Increment count
-// db.update('count', n => n + 1)
-//   .write();
