@@ -10,7 +10,8 @@ class UpdateNote extends Component {
 		this.props.updateNote({
 			id: this.props.note.id,
 			title: this.props.note.title, 
-			note: this.props.note.note
+			note: this.props.note.note,
+			history: this.props.history
 		});
 	}
 

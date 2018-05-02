@@ -45,7 +45,7 @@ export function selectedNote(note) {
 	}
 }
 
-export function updateNote({ id, title, note }) {
+export function updateNote({ id, title, note, history }) {
 
 	return function (dispatch) {
 
@@ -53,6 +53,7 @@ export function updateNote({ id, title, note }) {
 			.then(response => {
 				// If request is good...
 				dispatch({ type: actionTypes.UPDATE_NOTE, note: response.data.note });
+				history.push('/');
 			})
 			.catch(err => {
 				// If request is bad... 
@@ -60,5 +61,5 @@ export function updateNote({ id, title, note }) {
 				dispatch({ type: actionTypes.UPDATE_NOTE_ERROR })
 			});
 
-	}
+		}
 }
